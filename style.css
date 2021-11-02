@@ -8,7 +8,7 @@ body {
     background-color: rgb(25, 25, 125);
 }
 
-#container {
+.container {
     width: 50%;
     margin: 100px auto;
     border: 1px solid white;
