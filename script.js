@@ -8,8 +8,9 @@
 // Chiedo all'utente il livello di difficoltà che vuole.
 
 let chosenDiff = parseInt(prompt("Scegli la difficoltà: da 1 a 3"));
-console.log("Diffoltà: ", chosenDiff);
+console.log("Difficoltà: ", chosenDiff);
 
+let numberOfSquares;
 // Se la difficoltà è 1(facile) genero 100 quadratini (10 per riga)
 // Se la difficoltà è 2(media) genero 81 quadratini (10 per riga)
 // Se la difficoltà è 3(difficile) genero 49 quadratini (10 per riga)
@@ -27,26 +28,26 @@ if (chosenDiff === 1) {
 // Genero una griglia di gioco in base alla difficoltà scelta
 // Quando genererò i quadratini all'interno avranno un numero progressivo nascosto
 
-let gridContainer = document.querySelector(".container");
-
 for (i = 0; i < numberOfSquares; i++) {
+    let gridContainer = document.querySelector(".container");
     let newSquare;
     newSquare = createElement("div", "square");
-    newSquare.innerHTML += `<span>${i + 1}</span>`;
+    newSquare.innerHTML = `<span>${i + 1}</span>`;
 
     if (numberOfSquares == 49) {
-        newSquare.classList.add("hard");
+        addClass (newSquare, "hard");
     } if (numberOfSquares == 81) {
-        newSquare.classList.add("medium");
-    } else {
-        newSquare.classList.add("easy");
+        addClass (newSquare, "medium");
+    } if (numberOfSquares == 100) {
+        addClass (newSquare, "easy");
     }
     // Al click, il quadratino cambierà colore e mostrerà il numero nascosto
     newSquare.addEventListener("click",
         function() {
-            newSquare.classList.add("active");
+            addClass (newSquare, "active");
         }
     )
+    
     gridContainer.appendChild(newSquare);
 }
 
@@ -54,7 +55,12 @@ for (i = 0; i < numberOfSquares; i++) {
 
 // funzioni generali
 function createElement(elementTag, elementClass) {
-    let createDiv = document.createElement(elementTag);
-    createDiv.classList.add(elementClass);
-    return createDiv;
+    let createdElement = document.createElement(elementTag);
+    createdElement.classList.add(elementClass);
+    return createdElement;
+}
+
+function addClass (targetElement, plusClass) {
+    let addedClass = targetElement.classList.add(plusClass)
+    return addedClass;
 }
